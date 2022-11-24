@@ -7,7 +7,7 @@
 
 import XCTest
 
-class pokedexUITestsLaunchTests: XCTestCase {
+class PokedexUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
