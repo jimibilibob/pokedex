@@ -5,7 +5,12 @@ For many years trainers around the world have worked together tocollect data abo
 ## Installation
 To install the application you need to install the dependencies by executing in the root directory of the project
 
-```bash
-pod install
-```
+> `pod install`
+
 Then your able to run the application into an iOS device.
+## Prehooks Setup
+
+At first is necessary to make these files executables, so open a terminal and move to the hook folder and run:
+> `chmod +x install-hooks.bash pre-commit.bash`
+
+Finally once we run the above command we need to run the _install-hooks.bash_ script which will generate a linked file in the  _.git/hooks_ folder called _pre-commit_ which will point to _pre-commit.bash_, so if we need to change the _pre-commit_ script we just need to modify _pre-commit.bash_ file.
