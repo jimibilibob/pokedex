@@ -36,6 +36,10 @@ struct PokemonRaw: Codable {
         case eggGroups = "egg_groups"
         case pokedexNumbers = "pokedex_numbers"
     }
+
+    func getTypesString() -> String {
+        return pokemonDetails.map({ $0.types.map({ $0.type.name.capitalized }).joined(separator: " ") }).first ?? ""
+    }
 }
 
 // MARK: - Generation

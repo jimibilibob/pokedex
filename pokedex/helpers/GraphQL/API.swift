@@ -5,11 +5,11 @@ import Apollo
 import Foundation
 
 // swiftlint:disable all
-public final class DataQuery: GraphQLQuery {
+public final class HomePageQuery: GraphQLQuery {
   // The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query DataQuery {
+    query homePage {
       species: pokemon_v2_pokemonspecies(order_by: {id: asc}, limit: 898) {
         __typename
         id
@@ -60,7 +60,7 @@ public final class DataQuery: GraphQLQuery {
     }
     """
 
-  public let operationName: String = "DataQuery"
+  public let operationName: String = "homePage"
 
   public init() {
   }
@@ -118,11 +118,7 @@ public final class DataQuery: GraphQLQuery {
       }
 
       public init(id: Int, name: String, generation: Generation? = nil, pokemonDetails: [PokemonDetail], genderRate: Int? = nil, hatchCounter: Int? = nil, eggGroups: [EggGroup], pokedexNumbers: [PokedexNumber]) {
-        self.init(unsafeResultMap: ["__typename": "pokemon_v2_pokemonspecies", "id": id, "name": name,
-                                    "generation": generation.flatMap { (value: Generation) -> ResultMap in value.resultMap },
-                                    "pokemon_details": pokemonDetails.map { (value: PokemonDetail) -> ResultMap in value.resultMap },
-                                    "gender_rate": genderRate, "hatch_counter": hatchCounter, "egg_groups": eggGroups.map { (value: EggGroup) -> ResultMap in
-            value.resultMap }, "pokedex_numbers": pokedexNumbers.map { (value: PokedexNumber) -> ResultMap in value.resultMap }])
+        self.init(unsafeResultMap: ["__typename": "pokemon_v2_pokemonspecies", "id": id, "name": name, "generation": generation.flatMap { (value: Generation) -> ResultMap in value.resultMap }, "pokemon_details": pokemonDetails.map { (value: PokemonDetail) -> ResultMap in value.resultMap }, "gender_rate": genderRate, "hatch_counter": hatchCounter, "egg_groups": eggGroups.map { (value: EggGroup) -> ResultMap in value.resultMap }, "pokedex_numbers": pokedexNumbers.map { (value: PokedexNumber) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -515,9 +511,7 @@ public final class DataQuery: GraphQLQuery {
         }
 
         public init(pokedexes: Pokedex? = nil, pokedexNumber: Int) {
-          self.init(unsafeResultMap: ["__typename": "pokemon_v2_pokemondexnumber",
-                                      "pokedexes": pokedexes.flatMap { (value: Pokedex) -> ResultMap in
-              value.resultMap }, "pokedex_number": pokedexNumber])
+          self.init(unsafeResultMap: ["__typename": "pokemon_v2_pokemondexnumber", "pokedexes": pokedexes.flatMap { (value: Pokedex) -> ResultMap in value.resultMap }, "pokedex_number": pokedexNumber])
         }
 
         public var __typename: String {
@@ -554,8 +548,7 @@ public final class DataQuery: GraphQLQuery {
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("pokemon_v2_pokedexdescriptions", alias: "pokedexes_descriptions", arguments: ["where": ["language_id": ["_eq": 9]]],
-                           type: .nonNull(.list(.nonNull(.object(PokedexesDescription.selections))))),
+              GraphQLField("pokemon_v2_pokedexdescriptions", alias: "pokedexes_descriptions", arguments: ["where": ["language_id": ["_eq": 9]]], type: .nonNull(.list(.nonNull(.object(PokedexesDescription.selections))))),
             ]
           }
 

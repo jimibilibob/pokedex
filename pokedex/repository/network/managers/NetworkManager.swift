@@ -9,9 +9,7 @@ import Foundation
 import Apollo
 
 class NetworkManager {
-
     static let shared = NetworkManager()
 
     lazy var apollo = ApolloClient(url: URL(string: Constants.pokeApiEndpoint)!)
-
 }

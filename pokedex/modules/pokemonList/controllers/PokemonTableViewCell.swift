@@ -8,14 +8,36 @@
 import UIKit
 
 class PokemonTableViewCell: UITableViewCell {
+    static let identifier = "PokemonTableViewCell"
+
+    @IBOutlet var pokemonIndexLabel: UILabel!
+    @IBOutlet var pokemonNameLabel: UILabel!
+    @IBOutlet var pokemonTypesLabel: UILabel!
+    @IBOutlet var pokemonImage: UIImageView!
+    @IBOutlet var mainBackgroundView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setupViews()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
+
+    func setupViews() {
+        selectionStyle = .none
+        mainBackgroundView.layer.cornerRadius = 10
+        mainBackgroundView.clipsToBounds = true
+    }
+
+    func loadData(pokemon: PokemonRaw) {
+        pokemonNameLabel.text = pokemon.name
+        pokemonIndexLabel.text = PokemonHelper.shared.getPokemonIndexString(id: pokemon.id)
+        pokemonTypesLabel.text = pokemon.getTypesString()
+        guard let image = PokemonHelper.shared.getImage(pokemon: pokemon) else { return }
+        pokemonImage.image = image
+    }
+
 }

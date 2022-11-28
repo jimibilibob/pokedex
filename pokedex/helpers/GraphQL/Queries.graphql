@@ -1,4 +1,4 @@
-query DataQuery {
+query homePage {
   species: pokemon_v2_pokemonspecies(order_by: {id: asc}, limit: 898) {
     id
     name

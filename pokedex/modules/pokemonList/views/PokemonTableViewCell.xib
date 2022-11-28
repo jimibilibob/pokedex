@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PokemonTableViewCell" customModule="pokedex" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PokemonTableViewCell" id="KGk-i7-Jjw" customClass="PokemonTableViewCell" customModule="pokedex" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -39,23 +39,34 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pokeball" translatesAutoresizingMaskIntoConstraints="NO" id="6kF-01-zFp">
-                                <rect key="frame" x="225" y="-15" width="95" height="88"/>
+                                <rect key="frame" x="218" y="-15" width="102" height="102"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="95" id="tBp-VT-yR8"/>
+                                    <constraint firstAttribute="width" constant="102" id="cbd-iC-8CJ"/>
+                                    <constraint firstAttribute="height" constant="102" id="nm8-Zk-OQx"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Poisson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3W-dI-Xuo">
+                                <rect key="frame" x="15" y="57" width="57" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="oSW-xg-J8d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBrownColor"/>
                         <constraints>
-                            <constraint firstItem="6kF-01-zFp" firstAttribute="top" secondItem="aKY-t6-zb0" secondAttribute="top" constant="-15" id="0c0-eO-zKR"/>
+                            <constraint firstItem="M3W-dI-Xuo" firstAttribute="top" secondItem="qip-IX-DyC" secondAttribute="bottom" id="29j-0e-7rZ"/>
+                            <constraint firstItem="M3W-dI-Xuo" firstAttribute="leading" secondItem="aKY-t6-zb0" secondAttribute="leading" constant="15" id="2mV-JP-PgE"/>
+                            <constraint firstItem="6kF-01-zFp" firstAttribute="top" secondItem="aKY-t6-zb0" secondAttribute="top" constant="-15" id="6PZ-vf-TaM"/>
                             <constraint firstItem="qip-IX-DyC" firstAttribute="leading" secondItem="aKY-t6-zb0" secondAttribute="leading" constant="15" id="7qT-OS-57K"/>
-                            <constraint firstAttribute="trailing" secondItem="6kF-01-zFp" secondAttribute="trailing" id="F3V-gb-NB1"/>
                             <constraint firstItem="qip-IX-DyC" firstAttribute="top" secondItem="Nuk-Ci-s9d" secondAttribute="bottom" id="G0F-6T-NgP"/>
                             <constraint firstItem="0oD-xT-y5B" firstAttribute="top" secondItem="aKY-t6-zb0" secondAttribute="top" constant="2" id="WQY-Vm-U3c"/>
                             <constraint firstItem="Nuk-Ci-s9d" firstAttribute="top" secondItem="aKY-t6-zb0" secondAttribute="top" constant="15" id="ca6-hf-JQW"/>
                             <constraint firstItem="0oD-xT-y5B" firstAttribute="leading" secondItem="Nuk-Ci-s9d" secondAttribute="trailing" constant="40" id="iLP-ju-P3B"/>
-                            <constraint firstAttribute="bottom" secondItem="6kF-01-zFp" secondAttribute="bottom" constant="15" id="mKe-Mo-pc3"/>
                             <constraint firstItem="Nuk-Ci-s9d" firstAttribute="leading" secondItem="aKY-t6-zb0" secondAttribute="leading" constant="15" id="sPX-OA-8VH"/>
+                            <constraint firstAttribute="trailing" secondItem="6kF-01-zFp" secondAttribute="trailing" id="wNU-6l-B2R"/>
                         </constraints>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bulbasaur" translatesAutoresizingMaskIntoConstraints="NO" id="n2f-bh-ulb">
@@ -76,6 +87,13 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="mainBackgroundView" destination="aKY-t6-zb0" id="jwq-bl-ybP"/>
+                <outlet property="pokemonImage" destination="n2f-bh-ulb" id="nuC-yN-GLh"/>
+                <outlet property="pokemonIndexLabel" destination="Nuk-Ci-s9d" id="MXf-V6-Ke3"/>
+                <outlet property="pokemonNameLabel" destination="qip-IX-DyC" id="kbt-DQ-jGE"/>
+                <outlet property="pokemonTypesLabel" destination="M3W-dI-Xuo" id="hhw-Em-sqa"/>
+            </connections>
             <point key="canvasLocation" x="131.8840579710145" y="99.776785714285708"/>
         </tableViewCell>
     </objects>

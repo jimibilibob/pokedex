@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PokemonDetailViewController" customModule="pokedex" customModuleProvider="target">
+            <connections>
+                <outlet property="bodyView" destination="5sw-RT-z8E" id="iSU-xo-zYK"/>
+                <outlet property="evolutionSectionLabel" destination="Sju-0m-GnT" id="Lyr-1C-qA6"/>
+                <outlet property="pokeballSelectorImage" destination="1GT-qC-Z7q" id="DyI-CB-uYm"/>
+                <outlet property="pokemonImage" destination="Npu-h7-9Gk" id="wzr-FY-C1U"/>
+                <outlet property="pokemonIndex" destination="nTp-it-hmd" id="ItU-TK-CuT"/>
+                <outlet property="pokemonName" destination="iHq-W7-gXP" id="Idm-MW-MBy"/>
+                <outlet property="pokemonTypes" destination="0Rx-SL-HWv" id="zOV-rg-xT4"/>
+                <outlet property="sectionContainerStaick" destination="hM1-O0-gob" id="Keq-Ls-PQk"/>
+                <outlet property="statsSectionLabel" destination="8es-2z-wlL" id="Feh-pV-MUv"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aPG-lQ-cuc">
+                    <rect key="frame" x="95" y="69" width="224" height="100"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bulbasaur" translatesAutoresizingMaskIntoConstraints="NO" id="Npu-h7-9Gk">
+                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="Ecb-vt-at8"/>
+                                <constraint firstAttribute="width" constant="100" id="MkY-h9-JO4"/>
+                            </constraints>
+                        </imageView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="g45-Co-eMM">
+                            <rect key="frame" x="120" y="0.0" width="104" height="100"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Qo-68-TJu">
+                                    <rect key="frame" x="0.0" y="0.0" width="3.5" height="16"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTp-it-hmd">
+                                    <rect key="frame" x="0.0" y="16" width="28.5" height="16.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" name="TextGreyColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bulbasaur" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHq-W7-gXP">
+                                    <rect key="frame" x="0.0" y="32.5" width="104" height="29.5"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grass Poisson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rx-SL-HWv">
+                                    <rect key="frame" x="0.0" y="62" width="102.5" height="22"/>
+                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZ6-hQ-A0r">
+                                    <rect key="frame" x="0.0" y="84" width="3.5" height="16"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hM1-O0-gob">
+                    <rect key="frame" x="0.0" y="278" width="414" height="20.5"/>
+                    <subviews>
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8es-2z-wlL">
+                            <rect key="frame" x="0.0" y="0.0" width="207" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evolution" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sju-0m-GnT">
+                            <rect key="frame" x="207" y="0.0" width="207" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sw-RT-z8E">
+                    <rect key="frame" x="0.0" y="313.5" width="414" height="582.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pokeball-completed" translatesAutoresizingMaskIntoConstraints="NO" id="1GT-qC-Z7q">
+                    <rect key="frame" x="3.5" y="253.5" width="200" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="Qlj-gT-QWJ"/>
+                        <constraint firstAttribute="width" constant="200" id="R1F-dv-uSK"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pattern-large" translatesAutoresizingMaskIntoConstraints="NO" id="wGr-z6-ZOJ">
+                    <rect key="frame" x="346" y="208" width="80" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="QMt-cd-ycD"/>
+                        <constraint firstAttribute="width" constant="80" id="rYc-yY-qYO"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Evolution Chart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tI7-dk-UkO">
+                    <rect key="frame" x="45" y="352" width="117" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemGreenColor"/>
+            <constraints>
+                <constraint firstItem="aPG-lQ-cuc" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="41E-Fc-fAy"/>
+                <constraint firstItem="5sw-RT-z8E" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Fdx-pv-qff"/>
+                <constraint firstItem="hM1-O0-gob" firstAttribute="top" secondItem="wGr-z6-ZOJ" secondAttribute="bottom" constant="20" id="InY-D4-Cek"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hM1-O0-gob" secondAttribute="trailing" id="Pxj-SK-hqp"/>
+                <constraint firstItem="5sw-RT-z8E" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.65" id="Qhs-bK-dul"/>
+                <constraint firstItem="5sw-RT-z8E" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Rr4-CU-gcT"/>
+                <constraint firstItem="1GT-qC-Z7q" firstAttribute="centerX" secondItem="8es-2z-wlL" secondAttribute="centerX" id="T0F-b6-tMt"/>
+                <constraint firstItem="aPG-lQ-cuc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="25" id="T0V-ds-bcp"/>
+                <constraint firstItem="5sw-RT-z8E" firstAttribute="top" secondItem="1GT-qC-Z7q" secondAttribute="bottom" constant="-60" id="azl-pK-NzA"/>
+                <constraint firstItem="hM1-O0-gob" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bCe-Gi-vGE"/>
+                <constraint firstItem="5sw-RT-z8E" firstAttribute="top" secondItem="hM1-O0-gob" secondAttribute="bottom" constant="15" id="col-Kl-5lb"/>
+                <constraint firstAttribute="bottom" secondItem="5sw-RT-z8E" secondAttribute="bottom" id="g8u-t2-MJk"/>
+                <constraint firstAttribute="trailing" secondItem="wGr-z6-ZOJ" secondAttribute="trailing" constant="-12" id="kLg-4C-j3w"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="75.669642857142847"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Pattern-large" width="65" height="65"/>
+        <image name="bulbasaur" width="130" height="130"/>
+        <image name="pokeball-completed" width="100" height="100"/>
+        <namedColor name="TextGreyColor">
+            <color red="0.45490196078431372" green="0.45490196078431372" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -11,7 +11,7 @@ class GraphQLConverter {
 
     static let shared = GraphQLConverter()
 
-    func convertFromDataToPokemonStruct(data: DataQuery.Data, completion: @escaping(Result<[PokemonRaw], Error>) -> Void) {
+    func convertFromDataToPokemonStruct(data: HomePageQuery.Data, completion: @escaping(Result<[PokemonRaw], Error>) -> Void) {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: data.jsonObject)
             var decode: DataClass = try JSONDecoder().decode(DataClass.self, from: jsonData)
