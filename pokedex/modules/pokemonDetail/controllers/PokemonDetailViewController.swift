@@ -63,6 +63,7 @@ class PokemonDetailViewController: UIViewController {
         pokemonName.text = pokemon.name
         pokemonIndex.text = PokemonHelper.shared.getPokemonIndexString(id: pokemon.id)
         pokemonTypes.text = pokemon.getTypesString()
+        view.backgroundColor = UIColor(hexString: PokemonColors.pokemonTypeColorMap[pokemon.pokemonDetails[0].types[0].type.name] ?? "normal")
         guard let image = PokemonHelper.shared.getImage(pokemon: pokemon) else { return }
         pokemonImage.image = image
     }
