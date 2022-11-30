@@ -1,5 +1,5 @@
-query evolution {
-  evolutionChain(id: "1") {
+query evolution($id: String!) {
+  evolutionChain(id: $id) {
     __typename
     response
   }

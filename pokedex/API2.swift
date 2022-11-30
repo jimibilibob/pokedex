@@ -9,8 +9,8 @@ public final class EvolutionQuery: GraphQLQuery {
   // The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query evolution {
-      evolutionChain(id: "1") {
+    query evolution($id: String!) {
+      evolutionChain(id: $id) {
         __typename
         response
       }
@@ -19,7 +19,14 @@ public final class EvolutionQuery: GraphQLQuery {
 
   public let operationName: String = "evolution"
 
-  public init() {
+  public var id: String
+
+  public init(id: String) {
+    self.id = id
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -27,7 +34,7 @@ public final class EvolutionQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("evolutionChain", arguments: ["id": "1"], type: .object(EvolutionChain.selections)),
+        GraphQLField("evolutionChain", arguments: ["id": GraphQLVariable("id")], type: .object(EvolutionChain.selections)),
       ]
     }
 

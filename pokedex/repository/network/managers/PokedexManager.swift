@@ -38,7 +38,7 @@ class PokedexManager {
     }
 
     func getEvolutionChainById(id: String, completion: @escaping (Result<EvolutionQuery.Data?, Error>) -> Void) {
-        NetworkManager.shared.apollo2.fetch(query: EvolutionQuery()) { result in
+        NetworkManager.shared.apollo2.fetch(query: EvolutionQuery(id: id)) { result in
             switch result {
             case .success(let response):
                 completion(.success(response.data))
