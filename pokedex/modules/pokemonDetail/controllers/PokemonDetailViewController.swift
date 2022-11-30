@@ -11,6 +11,8 @@ class PokemonDetailViewController: UIViewController {
 
     var pokemon: PokemonRaw?
 
+    @IBOutlet var evolutionSectionTitle: UILabel!
+    @IBOutlet var evolutionTableView: UITableView!
     @IBOutlet var sectionContainerStaick: UIStackView!
     @IBOutlet var pokeballSelectorImage: UIImageView!
     @IBOutlet var statsSectionLabel: UILabel!
@@ -30,6 +32,11 @@ class PokemonDetailViewController: UIViewController {
     func setupViews() {
         bodyView.layer.cornerRadius = 25
         bodyView.clipsToBounds = true
+
+        let nib = UINib(nibName: EvolutionTableViewCell.identifier, bundle: nil)
+        evolutionTableView.register(nib, forCellReuseIdentifier: EvolutionTableViewCell.identifier)
+        evolutionTableView.delegate = self
+        evolutionTableView.dataSource = self
 
         let tapEvolution = UITapGestureRecognizer(target: self, action: #selector(tapOnEvolution))
         evolutionSectionLabel.addGestureRecognizer(tapEvolution)
@@ -63,9 +70,29 @@ class PokemonDetailViewController: UIViewController {
         pokemonName.text = pokemon.name
         pokemonIndex.text = PokemonHelper.shared.getPokemonIndexString(id: pokemon.id)
         pokemonTypes.text = pokemon.getTypesString()
-        view.backgroundColor = UIColor(hexString: PokemonColors.pokemonTypeColorMap[pokemon.pokemonDetails[0].types[0].type.name] ?? "normal")
+
+        let color = UIColor(hexString: PokemonColors.pokemonTypeColorMap[pokemon.pokemonDetails[0].types[0].type.name] ?? "normal")
+        view.backgroundColor = color
+        evolutionSectionTitle.textColor = color
         guard let image = PokemonHelper.shared.getImage(pokemon: pokemon) else { return }
         pokemonImage.image = image
     }
 
+}
+
+extension PokemonDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        2
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: EvolutionTableViewCell.identifier, for: indexPath) as? EvolutionTableViewCell
+        ?? EvolutionTableViewCell(style: .value1, reuseIdentifier: EvolutionTableViewCell.identifier)
+
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        170
+    }
 }
