@@ -12,4 +12,5 @@ class NetworkManager {
     static let shared = NetworkManager()
 
     lazy var apollo = ApolloClient(url: URL(string: Constants.pokeApiEndpoint)!)
+    lazy var apollo2 = ApolloClient(url: URL(string: Constants.pokeApiEndpoint2)!)
 }

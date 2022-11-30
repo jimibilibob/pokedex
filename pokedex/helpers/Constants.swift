@@ -9,6 +9,7 @@ import Foundation
 
 class Constants {
     static let pokeApiEndpoint = "https://beta.pokeapi.co/graphql/v1beta"
+    static let pokeApiEndpoint2 = "https://graphql-pokeapi.vercel.app/api/graphql"
     static let pokemonImageURL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/%d.png"
     static let pokemonTypes = [
         TypeElement(type: Generation(id: 1, name: "normal")),

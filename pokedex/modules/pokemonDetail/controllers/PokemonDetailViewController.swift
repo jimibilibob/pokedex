@@ -27,6 +27,7 @@ class PokemonDetailViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupData()
+        loadEvolutionChain()
     }
 
     func setupViews() {
@@ -78,6 +79,17 @@ class PokemonDetailViewController: UIViewController {
         pokemonImage.image = image
     }
 
+    func loadEvolutionChain() {
+        guard let pokemon = pokemon else { return }
+        PokedexManager.shared.getEvolutionChainById(id: String(pokemon.id)) { result in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
 
 extension PokemonDetailViewController: UITableViewDelegate, UITableViewDataSource {

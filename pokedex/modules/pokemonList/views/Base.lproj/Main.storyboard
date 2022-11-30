@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="vTK-Zs-FZ7">
-                                <rect key="frame" x="30" y="88" width="354" height="744"/>
+                                <rect key="frame" x="30" y="88" width="354" height="159.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokédex" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNn-MM-brH">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="38.5"/>
@@ -77,20 +77,23 @@
                                             <constraint firstItem="kEe-qq-3Gs" firstAttribute="centerY" secondItem="ocf-vG-IQ2" secondAttribute="centerY" id="utb-QF-f6i"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vNE-Cf-KgQ">
-                                        <rect key="frame" x="0.0" y="174.5" width="354" height="569.5"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </tableView>
                                 </subviews>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vNE-Cf-KgQ">
+                                <rect key="frame" x="0.0" y="255.5" width="414" height="606.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="vTK-Zs-FZ7" secondAttribute="trailing" constant="30" id="ALC-gn-PXW"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vTK-Zs-FZ7" secondAttribute="bottom" constant="30" id="PlV-Ke-2YU"/>
-                            <constraint firstItem="vTK-Zs-FZ7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="VYc-wR-BRh"/>
-                            <constraint firstItem="vTK-Zs-FZ7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="mtJ-BE-4mc"/>
+                            <constraint firstItem="vNE-Cf-KgQ" firstAttribute="top" secondItem="vTK-Zs-FZ7" secondAttribute="bottom" constant="8" id="A7K-LT-4ja"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vNE-Cf-KgQ" secondAttribute="bottom" id="Adx-Y7-bSw"/>
+                            <constraint firstItem="vTK-Zs-FZ7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="IUE-E3-xmc"/>
+                            <constraint firstItem="vTK-Zs-FZ7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mru-8b-FrB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vNE-Cf-KgQ" secondAttribute="trailing" id="nJ5-qW-i9V"/>
+                            <constraint firstItem="vNE-Cf-KgQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="x0i-mq-bpr"/>
+                            <constraint firstAttribute="trailing" secondItem="vTK-Zs-FZ7" secondAttribute="trailing" constant="30" id="yMB-bp-aPz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YxQ-Oh-trz"/>
@@ -111,7 +114,7 @@
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="TextGreyColor">
-            <color red="0.45490196078431372" green="0.45490196078431372" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.090196078431372548" green="0.090196078431372548" blue="0.10588235294117647" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
