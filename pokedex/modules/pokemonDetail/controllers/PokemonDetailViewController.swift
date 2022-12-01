@@ -72,15 +72,14 @@ class PokemonDetailViewController: UIViewController {
 
     func setupData() {
         guard let pokemon = pokemon else { return }
-        pokemonName.text = pokemon.name
+        pokemonName.text = pokemon.name.capitalized
         pokemonIndex.text = PokemonHelper.shared.getPokemonIndexString(id: pokemon.id)
         pokemonTypes.text = pokemon.getTypesString()
 
         let color = UIColor(hexString: PokemonColors.pokemonTypeColorMap[pokemon.pokemonDetails[0].types[0].type.name] ?? "normal")
         view.backgroundColor = color
         evolutionSectionTitle.textColor = color
-        guard let image = PokemonHelper.shared.getImage(pokemon: pokemon) else { return }
-        pokemonImage.image = image
+        ImageHelper.shared.downloadAndCacheImage(imageView: pokemonImage, urlString: pokemon.urlImage)
     }
 
     func loadEvolutionChain() {

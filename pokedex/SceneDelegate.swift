@@ -12,6 +12,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        // swiftlint: disable force_cast
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window = self.window
         // swiftlint:disable unused_optional_binding
         guard let _ = (scene as? UIWindowScene) else { return }
     }

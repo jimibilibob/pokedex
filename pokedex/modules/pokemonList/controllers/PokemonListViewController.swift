@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class ViewController: UIViewController {
 
@@ -34,6 +35,8 @@ class ViewController: UIViewController {
     }
 
     func initViewModel() {
+        viewModel.loading = SVProgressHUD.show
+        viewModel.loaded = SVProgressHUD.dismiss
         viewModel.getPokemons()
         viewModel.reloadData = { [weak self] in
             DispatchQueue.main.async {

@@ -33,12 +33,11 @@ class PokemonTableViewCell: UITableViewCell {
     }
 
     func loadData(pokemon: PokemonRaw) {
-        pokemonNameLabel.text = pokemon.name
+        pokemonNameLabel.text = pokemon.name.capitalized
         pokemonIndexLabel.text = PokemonHelper.shared.getPokemonIndexString(id: pokemon.id)
         pokemonTypesLabel.text = pokemon.getTypesString()
         mainBackgroundView.backgroundColor = UIColor(hexString: PokemonColors.pokemonTypeColorMap[pokemon.pokemonDetails[0].types[0].type.name] ?? "normal")
-        guard let image = PokemonHelper.shared.getImage(pokemon: pokemon) else { return }
-        pokemonImage.image = image
+        ImageHelper.shared.downloadAndCacheImage(imageView: pokemonImage, urlString: pokemon.urlImage)
     }
 
 }

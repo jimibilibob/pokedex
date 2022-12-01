@@ -11,17 +11,21 @@ import UIKit
 class PokemonListViewModel {
     var reloadData: (() -> Void)?
     var showErrorAlert: (() -> Void)?
+    var loading: (() -> Void)?
+    var loaded: (() -> Void)?
 
     var filteredPokemons = [PokemonRaw]()
     var pokemons = [PokemonRaw]() {
         didSet {
             reloadData?()
+            loaded?()
         }
     }
 
     var searchText = ""
 
     func getPokemons() {
+        loading?()
         PokedexManager.shared.getPokemons { result in
             switch result {
             case .success(let pokemons):
@@ -29,6 +33,7 @@ class PokemonListViewModel {
                 self.filteredPokemons = pokemons
             case .failure:
                 self.showErrorAlert?()
+                self.loaded?()
             }
         }
     }

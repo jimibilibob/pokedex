@@ -1,6 +1,6 @@
 #!/bin/bash
 echo “------------ Running pre-commit hook------------”
-xcodebuild -quiet -project pokedex.xcodeproj -scheme "pokedex" -destination 'platform=iOS Simulator,name=iPhone 13 Pro,OS=15.5' test
+xcodebuild -quiet -workspace pokedex.xcworkspace -scheme "pokedex" -destination 'platform=iOS Simulator,name=iPhone 13 Pro,OS=15.5' test
 if [ $? -ne 0 ]; then
  echo “------------TESTS MUST PASS BEFORE COMMIT!!!------------”
  exit 1
