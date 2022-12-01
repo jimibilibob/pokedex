@@ -30,6 +30,8 @@
 		CE05169B293544BA004DEA1D /* PokemonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE05169A293544BA004DEA1D /* PokemonHelper.swift */; };
 		CE30C13029379FF200ECB1C3 /* Queries2.graphql in Resources */ = {isa = PBXBuildFile; fileRef = CE30C12F29379FF200ECB1C3 /* Queries2.graphql */; };
 		CE30C1322937A0AD00ECB1C3 /* API2.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30C1312937A0AD00ECB1C3 /* API2.swift */; };
+		CE30C1342937C62900ECB1C3 /* PokemonDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30C1332937C62900ECB1C3 /* PokemonDetailViewModel.swift */; };
+		CE30C1362937DF5500ECB1C3 /* PokemonChainEvolutionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30C1352937DF5500ECB1C3 /* PokemonChainEvolutionResponse.swift */; };
 		CE3A2B2D292F1B2B00D6AEFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A2B2C292F1B2B00D6AEFC /* AppDelegate.swift */; };
 		CE3A2B2F292F1B2B00D6AEFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A2B2E292F1B2B00D6AEFC /* SceneDelegate.swift */; };
 		CE3A2B31292F1B2B00D6AEFC /* PokemonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A2B30292F1B2B00D6AEFC /* PokemonListViewController.swift */; };
@@ -76,6 +78,8 @@
 		CE05169A293544BA004DEA1D /* PokemonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonHelper.swift; sourceTree = "<group>"; };
 		CE30C12F29379FF200ECB1C3 /* Queries2.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Queries2.graphql; sourceTree = "<group>"; };
 		CE30C1312937A0AD00ECB1C3 /* API2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API2.swift; path = pokedex/API2.swift; sourceTree = SOURCE_ROOT; };
+		CE30C1332937C62900ECB1C3 /* PokemonDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailViewModel.swift; sourceTree = "<group>"; };
+		CE30C1352937DF5500ECB1C3 /* PokemonChainEvolutionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonChainEvolutionResponse.swift; sourceTree = "<group>"; };
 		CE3A2B29292F1B2B00D6AEFC /* pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3A2B2C292F1B2B00D6AEFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE3A2B2E292F1B2B00D6AEFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				CE0190652930550300870D24 /* PokeApiResponse.swift */,
+				CE30C1352937DF5500ECB1C3 /* PokemonChainEvolutionResponse.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 		CE05168D2934FDAA004DEA1D /* viewmodels */ = {
 			isa = PBXGroup;
 			children = (
+				CE30C1332937C62900ECB1C3 /* PokemonDetailViewModel.swift */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -490,7 +496,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/Queries2.graphql --localSchemaFile=\"helpers/GraphQL/schema2.json\" API2.swift\n";
+			shellScript = "# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/Queries2.graphql --passthroughCustomScalars --localSchemaFile=\"helpers/GraphQL/schema2.json\" API2.swift\n";
 		};
 		CE3A2B5F292FA8CD00D6AEFC /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -546,6 +552,7 @@
 				CE0190662930550300870D24 /* PokeApiResponse.swift in Sources */,
 				CEB063A92936965A00B9951B /* UIColorExtension.swift in Sources */,
 				CE3A2B37292F1B2B00D6AEFC /* pokedex.xcdatamodeld in Sources */,
+				CE30C1362937DF5500ECB1C3 /* PokemonChainEvolutionResponse.swift in Sources */,
 				CE30C1322937A0AD00ECB1C3 /* API2.swift in Sources */,
 				CE01906C2930F0CC00870D24 /* NetworkManager.swift in Sources */,
 				CE3A2B31292F1B2B00D6AEFC /* PokemonListViewController.swift in Sources */,
@@ -558,6 +565,7 @@
 				CE0516902934FDDC004DEA1D /* PokemonDetailViewController.swift in Sources */,
 				CE0190682930EFFD00870D24 /* Constants.swift in Sources */,
 				CE01906A2930F06D00870D24 /* PokemonWeaknesses.swift in Sources */,
+				CE30C1342937C62900ECB1C3 /* PokemonDetailViewModel.swift in Sources */,
 				CE0190782931620D00870D24 /* PokemonListViewModel.swift in Sources */,
 				CE0190752931438500870D24 /* PokemonTableViewCell.swift in Sources */,
 			);

@@ -11,6 +11,10 @@ class PokemonDetailViewController: UIViewController {
 
     var pokemon: PokemonRaw?
 
+    lazy var viewModel = {
+        PokemonDetailViewModel()
+    }()
+
     @IBOutlet var evolutionSectionTitle: UILabel!
     @IBOutlet var evolutionTableView: UITableView!
     @IBOutlet var sectionContainerStaick: UIStackView!
@@ -81,14 +85,7 @@ class PokemonDetailViewController: UIViewController {
 
     func loadEvolutionChain() {
         guard let pokemon = pokemon else { return }
-        PokedexManager.shared.getEvolutionChainById(id: String(pokemon.id)) { result in
-            switch result {
-            case .success(let data):
-                print(data)
-            case .failure(let error):
-                print(error)
-            }
-        }
+        viewModel.getEvolutionChain(pokemon: pokemon)
     }
 }
 

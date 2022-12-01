@@ -37,11 +37,17 @@ class PokedexManager {
 
     }
 
-    func getEvolutionChainById(id: String, completion: @escaping (Result<EvolutionQuery.Data?, Error>) -> Void) {
+    func getEvolutionChainById(id: String, completion: @escaping (Result<PokemonEvolutionChainResponse?, Error>) -> Void) {
         NetworkManager.shared.apollo2.fetch(query: EvolutionQuery(id: id)) { result in
             switch result {
             case .success(let response):
-                completion(.success(response.data))
+                guard let jsonDataRaw = try? JSONSerialization.data(withJSONObject: response.data!.resultMap, options: JSONSerialization.WritingOptions.prettyPrinted),
+                      let jsonString = NSString(data: jsonDataRaw, encoding: String.Encoding.utf8.rawValue) as? String else { return }
+                let data = Data((jsonString.utf8))
+                let decoder = JSONDecoder()
+                let jsonData = try? decoder.decode(PokemonEvolutionChainResponse.self, from: data)
+
+                completion(.success(jsonData))
             case .failure(let error):
                 completion(.failure(error))
             }

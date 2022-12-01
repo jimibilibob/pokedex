@@ -30,4 +30,5 @@ class PokemonHelper {
               let image = UIImage(data: data) else { return nil }
         return image
     }
+
 }

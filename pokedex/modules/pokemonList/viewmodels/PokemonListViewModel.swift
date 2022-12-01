@@ -18,6 +18,7 @@ class PokemonListViewModel {
             reloadData?()
         }
     }
+
     var searchText = ""
 
     func getPokemons() {
@@ -39,4 +40,5 @@ class PokemonListViewModel {
             })
         }
     }
+
 }

@@ -63,7 +63,7 @@ public final class EvolutionQuery: GraphQLQuery {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("response", type: .scalar(String.self)),
+          GraphQLField("response", type: .scalar(JSON.self)),
         ]
       }
 
@@ -73,7 +73,7 @@ public final class EvolutionQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(response: String? = nil) {
+      public init(response: JSON? = nil) {
         self.init(unsafeResultMap: ["__typename": "BaseResponse", "response": response])
       }
 
@@ -86,14 +86,26 @@ public final class EvolutionQuery: GraphQLQuery {
         }
       }
 
-      public var response: String? {
+      public var response: JSON? {
         get {
-          return resultMap["response"] as? String
+          return resultMap["response"] as? JSON
         }
         set {
           resultMap.updateValue(newValue, forKey: "response")
         }
       }
     }
+  }
+}
+
+public typealias JSON = [String : Any?]
+
+extension Dictionary: JSONDecodable {
+  // Custom `init` extension so Apollo can decode custom scalar type `CurrentMissionChallenge `
+  public init(jsonValue value: JSONValue) throws {
+    guard let dictionary = value as? Dictionary else {
+      throw JSONDecodingError.couldNotConvert(value: value, to: Dictionary.self)
+    }
+    self = dictionary
   }
 }
