@@ -32,6 +32,10 @@ class ViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: PokemonTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
+
+        searchTextField.delegate = self
+        searchTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
+                                  for: .editingChanged)
     }
 
     func initViewModel() {
@@ -51,15 +55,21 @@ class ViewController: UIViewController {
             self.navigationController?.present(sheet, animated: true, completion: nil)
         }
     }
+
+    @objc
+    func textFieldDidChange(_ textField: UITextField) {
+        guard let query = textField.text else { return }
+        viewModel.searchPokemonsByNameOrIndex(query: query)
+    }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.pokemons.count
+        viewModel.filteredPokemons.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let pokemon = viewModel.pokemons[indexPath.row]
+        let pokemon = viewModel.filteredPokemons[indexPath.row]
 
         let cell = tableView.dequeueReusableCell(withIdentifier: PokemonTableViewCell.identifier, for: indexPath) as? PokemonTableViewCell
         ?? PokemonTableViewCell(style: .default, reuseIdentifier: PokemonTableViewCell.identifier)
@@ -74,9 +84,23 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let pokemon = viewModel.pokemons[indexPath.row]
+        let pokemon = viewModel.filteredPokemons[indexPath.row]
         let vc = PokemonDetailViewController()
         vc.pokemon = pokemon
         show(vc, sender: nil)
     }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let query = textField.text else { return }
+        viewModel.searchPokemonsByNameOrIndex(query: query)
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let query = textField.text else { return true }
+        viewModel.searchPokemonsByNameOrIndex(query: query)
+        return true
+    }
+
 }

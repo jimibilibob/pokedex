@@ -22,8 +22,6 @@ class PokemonListViewModel {
         }
     }
 
-    var searchText = ""
-
     func getPokemons() {
         loading?()
         PokedexManager.shared.getPokemons { result in
@@ -38,12 +36,20 @@ class PokemonListViewModel {
         }
     }
 
-    func searchPokemonsByName() {
-        if !self.searchText.isEmpty {
-            pokemons = pokemons.filter({
-                $0.name.contains(searchText.lowercased())
-            })
+    func searchPokemonsByNameOrIndex(query: String) {
+        loading?()
+        if query.isEmpty {
+            filteredPokemons = pokemons
+            reloadData?()
+            loaded?()
+            return
         }
+        let queryLowerCased = query.lowercased()
+        filteredPokemons = pokemons.filter({ $0.name.lowercased().contains(queryLowerCased) ||
+            String($0.id).contains(queryLowerCased)
+        })
+        reloadData?()
+        loaded?()
     }
 
 }
