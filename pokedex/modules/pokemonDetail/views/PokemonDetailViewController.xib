@@ -13,13 +13,12 @@
             <connections>
                 <outlet property="bodyView" destination="5sw-RT-z8E" id="iSU-xo-zYK"/>
                 <outlet property="evolutionSectionLabel" destination="Sju-0m-GnT" id="Lyr-1C-qA6"/>
-                <outlet property="evolutionSectionTitle" destination="tI7-dk-UkO" id="sfp-7N-u2A"/>
-                <outlet property="evolutionTableView" destination="VIR-TI-IdL" id="9mf-FJ-bcB"/>
                 <outlet property="pokeballSelectorImage" destination="1GT-qC-Z7q" id="DyI-CB-uYm"/>
                 <outlet property="pokemonImage" destination="Npu-h7-9Gk" id="wzr-FY-C1U"/>
                 <outlet property="pokemonIndex" destination="nTp-it-hmd" id="ItU-TK-CuT"/>
                 <outlet property="pokemonName" destination="iHq-W7-gXP" id="Idm-MW-MBy"/>
                 <outlet property="pokemonTypes" destination="0Rx-SL-HWv" id="zOV-rg-xT4"/>
+                <outlet property="scrollView" destination="EFc-5P-sJV" id="okT-I7-Ph3"/>
                 <outlet property="sectionContainerStaick" destination="hM1-O0-gob" id="Keq-Ls-PQk"/>
                 <outlet property="statsSectionLabel" destination="8es-2z-wlL" id="Feh-pV-MUv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -94,22 +93,6 @@
                         </label>
                     </subviews>
                 </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sw-RT-z8E">
-                    <rect key="frame" x="0.0" y="313.5" width="414" height="582.5"/>
-                    <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="VIR-TI-IdL">
-                            <rect key="frame" x="0.0" y="60" width="414" height="522.5"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </tableView>
-                    </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="VIR-TI-IdL" secondAttribute="trailing" id="55R-aU-txb"/>
-                        <constraint firstItem="VIR-TI-IdL" firstAttribute="top" secondItem="5sw-RT-z8E" secondAttribute="top" constant="60" id="96v-FY-N2c"/>
-                        <constraint firstAttribute="bottom" secondItem="VIR-TI-IdL" secondAttribute="bottom" id="Aln-1h-Gfz"/>
-                        <constraint firstItem="VIR-TI-IdL" firstAttribute="leading" secondItem="5sw-RT-z8E" secondAttribute="leading" id="Oyk-we-jhc"/>
-                    </constraints>
-                </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pokeball-completed" translatesAutoresizingMaskIntoConstraints="NO" id="1GT-qC-Z7q">
                     <rect key="frame" x="3.5" y="253.5" width="200" height="120"/>
                     <constraints>
@@ -117,6 +100,18 @@
                         <constraint firstAttribute="width" constant="200" id="R1F-dv-uSK"/>
                     </constraints>
                 </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sw-RT-z8E">
+                    <rect key="frame" x="0.0" y="313.5" width="414" height="582.5"/>
+                    <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EFc-5P-sJV">
+                            <rect key="frame" x="-8" y="0.0" width="422" height="583"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <viewLayoutGuide key="contentLayoutGuide" id="WrD-lT-Hf1"/>
+                            <viewLayoutGuide key="frameLayoutGuide" id="Skd-WB-jcn"/>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pattern-large" translatesAutoresizingMaskIntoConstraints="NO" id="wGr-z6-ZOJ">
                     <rect key="frame" x="346" y="208" width="80" height="50"/>
                     <constraints>
@@ -124,31 +119,25 @@
                         <constraint firstAttribute="width" constant="80" id="rYc-yY-qYO"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evolution Chart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tI7-dk-UkO">
-                    <rect key="frame" x="30" y="338.5" width="158" height="26.5"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemGreenColor"/>
             <constraints>
+                <constraint firstItem="5sw-RT-z8E" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.650112" id="11p-hQ-hni"/>
                 <constraint firstItem="aPG-lQ-cuc" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="41E-Fc-fAy"/>
-                <constraint firstItem="5sw-RT-z8E" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Fdx-pv-qff"/>
+                <constraint firstItem="5sw-RT-z8E" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="7S1-ge-kNn"/>
+                <constraint firstItem="5sw-RT-z8E" firstAttribute="top" secondItem="1GT-qC-Z7q" secondAttribute="bottom" constant="-60" id="ACh-R2-wrX"/>
+                <constraint firstItem="hM1-O0-gob" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="GTr-Eg-nFL"/>
                 <constraint firstItem="hM1-O0-gob" firstAttribute="top" secondItem="wGr-z6-ZOJ" secondAttribute="bottom" constant="20" id="InY-D4-Cek"/>
+                <constraint firstItem="5sw-RT-z8E" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="JCp-Rc-cEu"/>
+                <constraint firstItem="hM1-O0-gob" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="N5w-fT-M2u"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hM1-O0-gob" secondAttribute="trailing" id="Pxj-SK-hqp"/>
-                <constraint firstItem="5sw-RT-z8E" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.65" id="Qhs-bK-dul"/>
-                <constraint firstItem="tI7-dk-UkO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="R9n-aE-i2I"/>
-                <constraint firstItem="5sw-RT-z8E" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Rr4-CU-gcT"/>
                 <constraint firstItem="1GT-qC-Z7q" firstAttribute="centerX" secondItem="8es-2z-wlL" secondAttribute="centerX" id="T0F-b6-tMt"/>
                 <constraint firstItem="aPG-lQ-cuc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="25" id="T0V-ds-bcp"/>
-                <constraint firstItem="5sw-RT-z8E" firstAttribute="top" secondItem="1GT-qC-Z7q" secondAttribute="bottom" constant="-60" id="azl-pK-NzA"/>
                 <constraint firstItem="hM1-O0-gob" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bCe-Gi-vGE"/>
-                <constraint firstItem="5sw-RT-z8E" firstAttribute="top" secondItem="hM1-O0-gob" secondAttribute="bottom" constant="15" id="col-Kl-5lb"/>
-                <constraint firstAttribute="bottom" secondItem="5sw-RT-z8E" secondAttribute="bottom" id="g8u-t2-MJk"/>
                 <constraint firstAttribute="trailing" secondItem="wGr-z6-ZOJ" secondAttribute="trailing" constant="-12" id="kLg-4C-j3w"/>
-                <constraint firstItem="tI7-dk-UkO" firstAttribute="top" secondItem="5sw-RT-z8E" secondAttribute="top" constant="25" id="uZJ-XE-AR2"/>
+                <constraint firstItem="5sw-RT-z8E" firstAttribute="top" secondItem="hM1-O0-gob" secondAttribute="bottom" constant="15" id="oqv-Y8-QU5"/>
+                <constraint firstAttribute="bottom" secondItem="5sw-RT-z8E" secondAttribute="bottom" id="uig-7P-gBi"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="75.669642857142847"/>
         </view>
@@ -158,7 +147,7 @@
         <image name="bulbasaur" width="130" height="130"/>
         <image name="pokeball-completed" width="100" height="100"/>
         <namedColor name="TextGreyColor">
-            <color red="0.090196078431372548" green="0.090196078431372548" blue="0.10588235294117647" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.090196078431372548" green="0.090196078431372548" blue="0.10588235294117647" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

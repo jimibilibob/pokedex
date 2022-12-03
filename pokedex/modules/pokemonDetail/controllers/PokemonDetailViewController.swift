@@ -10,13 +10,12 @@ import UIKit
 class PokemonDetailViewController: UIViewController {
 
     var pokemon: PokemonRaw?
+    @IBOutlet var scrollView: UIScrollView!
 
     lazy var viewModel = {
         PokemonDetailViewModel()
     }()
 
-    @IBOutlet var evolutionSectionTitle: UILabel!
-    @IBOutlet var evolutionTableView: UITableView!
     @IBOutlet var sectionContainerStaick: UIStackView!
     @IBOutlet var pokeballSelectorImage: UIImageView!
     @IBOutlet var statsSectionLabel: UILabel!
@@ -32,17 +31,35 @@ class PokemonDetailViewController: UIViewController {
         setupViews()
         setupData()
         loadEvolutionChain()
+        scrollView.isPagingEnabled = true
+        scrollView.contentSize = CGSize(width: bodyView.bounds.width * 2, height: bodyView.bounds.height)
+        scrollView.showsHorizontalScrollIndicator = false
+        loadSections()
+    }
+
+    func loadSections() {
+        // swiftlint:disable unused_enumerated
+        for (index, _) in [1, 2].enumerated() {
+            guard let pokemon = pokemon else { return }
+            if index == 0,
+               let statisticSection = Bundle.main.loadNibNamed("PokemonStatisticsView", owner: self)?.first as? PokemonStatisticsSlide {
+                scrollView.addSubview(statisticSection)
+                statisticSection.frame.size.width = bodyView.bounds.width
+                statisticSection.frame.origin.x = CGFloat(index) * bodyView.bounds.size.width
+                statisticSection.pokemon = pokemon
+                statisticSection.setupViews()
+                continue
+            }
+            guard let evolutionSection = Bundle.main.loadNibNamed("PokemonEvolutionView", owner: self)?.first as? PokemonEvolutionSlide else { continue }
+             scrollView.addSubview(evolutionSection)
+            evolutionSection.pokemon = pokemon
+            evolutionSection.frame.size.width = bodyView.bounds.width
+            evolutionSection.frame.origin.x = CGFloat(index) * bodyView.bounds.size.width
+            evolutionSection.setupViews()
+        }
     }
 
     func setupViews() {
-        bodyView.layer.cornerRadius = 25
-        bodyView.clipsToBounds = true
-
-        let nib = UINib(nibName: EvolutionTableViewCell.identifier, bundle: nil)
-        evolutionTableView.register(nib, forCellReuseIdentifier: EvolutionTableViewCell.identifier)
-        evolutionTableView.delegate = self
-        evolutionTableView.dataSource = self
-
         let tapEvolution = UITapGestureRecognizer(target: self, action: #selector(tapOnEvolution))
         evolutionSectionLabel.addGestureRecognizer(tapEvolution)
 
@@ -78,29 +95,12 @@ class PokemonDetailViewController: UIViewController {
 
         let color = UIColor(hexString: PokemonColors.pokemonTypeColorMap[pokemon.pokemonDetails[0].types[0].type.name] ?? "normal")
         view.backgroundColor = color
-        evolutionSectionTitle.textColor = color
+        bodyView.backgroundColor = color
         ImageHelper.shared.downloadAndCacheImage(imageView: pokemonImage, urlString: pokemon.urlImage)
     }
 
     func loadEvolutionChain() {
         guard let pokemon = pokemon else { return }
         viewModel.getEvolutionChain(pokemon: pokemon)
-    }
-}
-
-extension PokemonDetailViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: EvolutionTableViewCell.identifier, for: indexPath) as? EvolutionTableViewCell
-        ?? EvolutionTableViewCell(style: .value1, reuseIdentifier: EvolutionTableViewCell.identifier)
-
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        170
     }
 }
