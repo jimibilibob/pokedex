@@ -16,6 +16,13 @@ query homePage {
           name
         }
       }
+      stats: pokemon_v2_pokemonstats {
+        effort
+        base_stat
+        stat_name: pokemon_v2_stat {
+          name
+        }
+      }
     }
     gender_rate
     hatch_counter
@@ -33,5 +40,7 @@ query homePage {
       }
       pokedex_number
     }
+    evolves_from_species_id
+    evolution_chain_id
   }
 }

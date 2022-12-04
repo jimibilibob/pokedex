@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 // MARK: - PokeApiResponse
 struct PokeApiResponse: Codable {
@@ -27,6 +26,8 @@ struct PokemonRaw: Codable {
     let genderRate, hatchCounter: Int
     let eggGroups: [EggGroupElement]
     let pokedexNumbers: [PokedexNumber]
+    let evolvesFromSpeciesID: Int?
+    let evolutionChainID: Int?
 
     enum CodingKeys: String, CodingKey {
         case id, name, generation
@@ -35,6 +36,8 @@ struct PokemonRaw: Codable {
         case hatchCounter = "hatch_counter"
         case eggGroups = "egg_groups"
         case pokedexNumbers = "pokedex_numbers"
+        case evolvesFromSpeciesID = "evolves_from_species_id"
+        case evolutionChainID = "evolution_chain_id"
     }
 
     func getTypesString() -> String {
@@ -58,6 +61,24 @@ struct PokemonDetail: Codable {
     let height, weight: Int
     let types: [TypeElement]
     var weaknesses: [Weakness]? = []
+    let stats: [Stat]
+}
+
+// MARK: - Stat
+struct Stat: Codable {
+    let effort, baseStat: Int
+    let statName: StatNameClass
+
+    enum CodingKeys: String, CodingKey {
+        case effort
+        case baseStat = "base_stat"
+        case statName = "stat_name"
+    }
+}
+
+// MARK: - StatNameClass
+struct StatNameClass: Codable {
+    let name: String
 }
 
 // MARK: - TypeElement

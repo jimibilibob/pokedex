@@ -9,6 +9,7 @@ target 'pokedex' do
   pod 'SwiftLint', '0.47.1'
   pod 'Kingfisher', '~> 7.0'
   pod 'SVProgressHUD', '2.2.5'
+  pod 'Charts', '4.1.0'
 
   target 'pokedexTests' do
     inherit! :search_paths

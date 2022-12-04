@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,17 +20,33 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cLg-iC-qGb" customClass="RadarChartView" customModule="Charts">
+                    <rect key="frame" x="30" y="156" width="300" height="300"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="300" id="0Gp-HA-XMf"/>
+                        <constraint firstAttribute="width" constant="300" id="IAN-uG-0Kv"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="cLg-iC-qGb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="Fny-MF-Evx"/>
                 <constraint firstItem="MZy-Cl-oEj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="Qba-WC-OQw"/>
                 <constraint firstItem="MZy-Cl-oEj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="T4Z-7A-uK3"/>
+                <constraint firstItem="cLg-iC-qGb" firstAttribute="top" secondItem="MZy-Cl-oEj" secondAttribute="bottom" constant="70" id="baB-Xa-5Wt"/>
             </constraints>
             <connections>
+                <outlet property="radarChart" destination="cLg-iC-qGb" id="O1M-dy-AYt"/>
                 <outlet property="titleLabel" destination="MZy-Cl-oEj" id="fpw-dP-mre"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="59.598214285714285"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

@@ -1,6 +1,0 @@
-query evolution($id: String!) {
-  evolutionChain(id: $id) {
-    __typename
-    response
-  }
-}
