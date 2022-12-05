@@ -11,7 +11,4 @@ class PokemonDetailViewModel {
     var reloadData: (() -> Void)?
     var showErrorAlert: (() -> Void)?
 
-    func getEvolutionChain(pokemon: PokemonRaw) {
-    }
-
 }

@@ -87,6 +87,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let pokemon = viewModel.filteredPokemons[indexPath.row]
         let vc = PokemonDetailViewController()
         vc.pokemon = pokemon
+        vc.evolutionChain = viewModel.getEvolutionChain()[String(pokemon.evolutionChainID ?? 0)]
         show(vc, sender: nil)
     }
 }

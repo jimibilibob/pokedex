@@ -52,4 +52,16 @@ class PokemonListViewModel {
         loaded?()
     }
 
+    func getEvolutionChain() -> [String: [PokemonRaw]] {
+        var pokemonGroupByEvolutionChain: [String: [PokemonRaw]] = [:]
+        pokemons.forEach({ pokemon in
+            let key = "\(pokemon.evolutionChainID ?? 0)"
+            if pokemonGroupByEvolutionChain[key] == nil {
+                pokemonGroupByEvolutionChain[key] = [pokemon]
+            } else {
+                pokemonGroupByEvolutionChain[key]!.append(pokemon)
+            }
+        })
+        return pokemonGroupByEvolutionChain
+    }
 }

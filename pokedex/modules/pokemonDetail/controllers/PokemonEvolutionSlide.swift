@@ -14,6 +14,7 @@ class PokemonEvolutionSlide: UIView {
     @IBOutlet var tableView: UITableView!
 
     var pokemon: PokemonRaw?
+    var evolutionChain: [PokemonRaw]?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,12 +38,23 @@ class PokemonEvolutionSlide: UIView {
 
 extension PokemonEvolutionSlide: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        guard let evolutionChain = evolutionChain,
+              evolutionChain.count > 1 else { return 0 }
+        return evolutionChain.count - 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let evolutionChain = evolutionChain else { return EvolutionTableViewCell(style: .value1, reuseIdentifier: EvolutionTableViewCell.identifier) }
+        let pokemonFrom = evolutionChain[indexPath.row]
+        let pokemonTo = evolutionChain[indexPath.row + 1]
+
         let cell = tableView.dequeueReusableCell(withIdentifier: EvolutionTableViewCell.identifier, for: indexPath) as? EvolutionTableViewCell
         ?? EvolutionTableViewCell(style: .value1, reuseIdentifier: EvolutionTableViewCell.identifier)
+
+        cell.pokemonFrom = pokemonFrom
+        cell.pokemonTo = pokemonTo
+
+        cell.loadData()
 
         return cell
     }

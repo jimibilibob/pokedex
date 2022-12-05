@@ -10,6 +10,7 @@ import UIKit
 class PokemonDetailViewController: UIViewController {
 
     var pokemon: PokemonRaw?
+    var evolutionChain: [PokemonRaw]?
     @IBOutlet var scrollView: UIScrollView!
 
     lazy var viewModel = {
@@ -30,7 +31,6 @@ class PokemonDetailViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupData()
-        loadEvolutionChain()
         scrollView.isPagingEnabled = true
         scrollView.contentSize = CGSize(width: bodyView.bounds.width * 2, height: bodyView.bounds.height)
         scrollView.showsHorizontalScrollIndicator = false
@@ -53,6 +53,7 @@ class PokemonDetailViewController: UIViewController {
             guard let evolutionSection = Bundle.main.loadNibNamed("PokemonEvolutionView", owner: self)?.first as? PokemonEvolutionSlide else { continue }
              scrollView.addSubview(evolutionSection)
             evolutionSection.pokemon = pokemon
+            evolutionSection.evolutionChain = self.evolutionChain
             evolutionSection.frame.size.width = bodyView.bounds.width
             evolutionSection.frame.origin.x = CGFloat(index) * bodyView.bounds.size.width
             evolutionSection.setupViews()
@@ -99,8 +100,4 @@ class PokemonDetailViewController: UIViewController {
         ImageHelper.shared.downloadAndCacheImage(imageView: pokemonImage, urlString: pokemon.urlImage)
     }
 
-    func loadEvolutionChain() {
-        guard let pokemon = pokemon else { return }
-        viewModel.getEvolutionChain(pokemon: pokemon)
-    }
 }
