@@ -15,10 +15,13 @@ class PokemonStatisticsSlide: UIView {
     @IBOutlet var titleLabel: UILabel!
 
     var pokemon: PokemonRaw?
+    var dataSet = RadarChartDataSet(entries: [])
+    var labels: [String] = []
+    var borderColor = UIColor.red
+    var fillColor = UIColor.red.withAlphaComponent(0.6)
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupChart()
     }
 
     func setupViews() {
@@ -29,54 +32,79 @@ class PokemonStatisticsSlide: UIView {
 
         let color = UIColor(hexString: PokemonColors.pokemonTypeColorMap[pokemon.pokemonDetails[0].types[0].type.name] ?? "normal")
         titleLabel.textColor = color
+        borderColor = color
+        fillColor = color.withAlphaComponent(0.6)
+        var entries: [RadarChartDataEntry] = []
+        pokemon.pokemonDetails[0].stats.forEach({ statistic in
+            entries.append(RadarChartDataEntry(value: Double(statistic.baseStat)))
+            self.labels.append(statistic.statName.name)
+        })
+        dataSet = RadarChartDataSet(
+            entries: entries
+        )
+        setupChart()
     }
 
-    // 1
-    let greenDataSet = RadarChartDataSet(
-        entries: [
-            RadarChartDataEntry(value: 210),
-            RadarChartDataEntry(value: 60.0),
-            RadarChartDataEntry(value: 150.0),
-            RadarChartDataEntry(value: 150.0),
-            RadarChartDataEntry(value: 160.0),
-            RadarChartDataEntry(value: 150.0),
-            RadarChartDataEntry(value: 110.0),
-            RadarChartDataEntry(value: 190.0),
-            RadarChartDataEntry(value: 200.0)
-        ]
-    )
-    let redDataSet = RadarChartDataSet(
-        entries: [
-            RadarChartDataEntry(value: 120.0),
-            RadarChartDataEntry(value: 160.0),
-            RadarChartDataEntry(value: 110.0),
-            RadarChartDataEntry(value: 110.0),
-            RadarChartDataEntry(value: 210.0),
-            RadarChartDataEntry(value: 120.0),
-            RadarChartDataEntry(value: 210.0),
-            RadarChartDataEntry(value: 100.0),
-            RadarChartDataEntry(value: 210.0)
-        ]
-    )
-
     func setupChart() {
-        // 2
-        let data = RadarChartData(dataSets: [greenDataSet, redDataSet])
+        dataSet.lineWidth = 2
+        dataSet.colors = [borderColor]
+        dataSet.fillColor = fillColor
+        dataSet.drawFilledEnabled = true
 
-        // 3
+        dataSet.valueFormatter = DataSetValueFormatter()
+
+        let data = RadarChartData(dataSet: dataSet)
+
         radarChart.data = data
 
-//        // 1
-//        redDataSet.lineWidth = 2
-//
-//        // 2
-//        let redColor = UIColor(red: 247/255, green: 67/255, blue: 115/255, alpha: 1)
-//        let redFillColor = UIColor(red: 247/255, green: 67/255, blue: 115/255, alpha: 0.6)
-//        redDataSet.colors = [redColor]
-//        redDataSet.fillColor = redFillColor
-//        redDataSet.drawFilledEnabled = true
-//
-//        // 3
-//        redDataSet.valueFormatter = DataSetValueFormatter()
+        radarChart.webLineWidth = 1.5
+        radarChart.innerWebLineWidth = 1.5
+        radarChart.webColor = .lightGray
+        radarChart.innerWebColor = .lightGray
+        radarChart.data?.setValueFont(.systemFont(ofSize: 9, weight: .bold))
+
+        let xAxis = radarChart.xAxis
+        xAxis.labelFont = .systemFont(ofSize: 10, weight: .bold)
+        xAxis.labelTextColor = borderColor
+        xAxis.xOffset = 10
+        xAxis.yOffset = 10
+        let xValueFormatter = XAxisFormatter()
+        xValueFormatter.labels = self.labels
+        xAxis.valueFormatter = xValueFormatter
+
+        let yAxis = radarChart.yAxis
+        yAxis.labelFont = .systemFont(ofSize: 0, weight: .light)
+        yAxis.labelCount = 1
+        yAxis.drawTopYLabelEntryEnabled = true
+        yAxis.axisMinimum = 0
+        yAxis.valueFormatter = YAxisFormatter()
+
+        radarChart.rotationEnabled = false
+        radarChart.legend.enabled = false
+    }
+}
+
+class DataSetValueFormatter: ValueFormatter {
+    func stringForValue(_ value: Double,
+                        entry: ChartDataEntry,
+                        dataSetIndex: Int,
+                        viewPortHandler: ViewPortHandler?) -> String {
+        "\(value)"
+    }
+
+}
+
+class XAxisFormatter: IndexAxisValueFormatter {
+    var labels: [String] = []
+
+    override func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        labels[Int(value) % labels.count]
+    }
+
+}
+
+class YAxisFormatter: IndexAxisValueFormatter {
+    override func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        ""
     }
 }
